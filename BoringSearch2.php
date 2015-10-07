@@ -20,7 +20,7 @@
     require_once("Connect.php");
     $conn = getDbConnection();
 
-    $result = mysqli_query($conn,"SELECT * FROM film WHERE 0,10");
+    $result = mysqli_query($conn,"SELECT * FROM film WHERE $_GET");
     if(!$result)
     {
         die("Could not retrieve records from database: " . mysqli_error($conn));
