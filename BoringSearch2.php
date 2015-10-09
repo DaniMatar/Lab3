@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,48 +10,72 @@
 <body>
 <table>
     <thead>
-
-
+    <th>Title</th>
+    <th>Description</th>
     </thead>
 
-
-    <tbody>
 
     <?php
     require_once("Connect.php");
     $conn = getDbConnection();
 
+    $search = $_POST['SearchB'];
 
-    if (!empty($_POST['search']))
-    {
-        $result= "SELECT * FROM film VALUES ('";
-        $result = $_GET['search'];
-
-        $result= mysqli_query($conn, $result);
-
+    $sql= "SELECT * FROM film WHERE description LIKE ('%";
+    $sql .=   $search;
+    $sql .= "%')";
+    $sql .= "LIMIT 25";
 
 
 
-    if(!$result)
-    {
-        die("Could not retrieve records from database: " . mysqli_error($conn));
-    }
-
-    else
-    {
 
 
 
-    }
 
+    $result= mysqli_query($conn, $sql);
+
+        if(!$result)
+        {
+            die("Could not retrieve records from database: " . mysqli_error($conn));
+        }
+
+    while($row = mysqli_fetch_assoc($result)):
+        ?>
+        <tr>
+            <td><?php echo $row['title'] ?></td>
+            <td><?php echo $row['description'] ?></td>
+        </tr>
+
+    <?php
+    endwhile;
 
     mysqli_close($conn);
-
-
-    }
     ?>
     </tbody>
 </table>
-<?php include_once("footer.html"); ?>
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
