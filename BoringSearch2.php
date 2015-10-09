@@ -4,7 +4,7 @@
 <head>
     <title>Our film list</title>
     <style>
-        table, th, tr, td { border: solid 2px black;}
+
     </style>
 </head>
 <body>

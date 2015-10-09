@@ -8,10 +8,22 @@
 </head>
 <body>
 
-<form action="BoringSearch2.php" method="POST">
-    <input id="search" type="text" placeholder="Search here" name = "SearchB">
+<form action="AddActorPartB2.php" method="POST">
+    <input id="searchF" type="text" placeholder="First Name" name = "firstName">
+    <input id="searchL" type="text" placeholder="Last Name" name = "lastName">
     <input id="submit" type="submit" value="Search">
 </form>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
