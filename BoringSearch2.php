@@ -8,7 +8,7 @@
     </style>
 </head>
 <body>
-<table>
+<table border="1">
     <thead>
     <th>Title</th>
     <th>Description</th>
