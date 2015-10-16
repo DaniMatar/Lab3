@@ -29,11 +29,11 @@ if(!empty($_POST['actorId'])) {
     $result = mysqli_query($conn, $sql);
     if(!$result)
     {
-        die("Unable to insert record: " . mysqli_error($conn));
+        die("Unable to Delete record: " . mysqli_error($conn));
     }
 
     else{
-
+        echo "Affected rows:  ". $result.mysqli_affected_rows($conn);
 
     }
 
@@ -49,7 +49,7 @@ if(!empty($_POST['actorId'])) {
     </thead>
     <?php
 
-    $Display = "SELECT first_name,last_name, actor_id FROM actor ORDER BY actor.actor_id ASC LIMIT 10";
+    $Display = "SELECT first_name,last_name, actor_id FROM actor ORDER BY actor.actor_id DESC LIMIT 10";
     $result2= mysqli_query($conn, $Display);
 
     if(!$result2)
@@ -57,7 +57,7 @@ if(!empty($_POST['actorId'])) {
         die("Could not retrieve records from database: " . mysqli_error($conn));
     }
 
-    echo "Affected rows:  ". $result.mysqli_affected_rows($conn);
+
 
     while($row = mysqli_fetch_assoc($result2)):
         ?>
