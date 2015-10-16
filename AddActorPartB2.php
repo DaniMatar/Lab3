@@ -27,7 +27,7 @@ if(!empty($_POST['firstName']) && !empty($_POST['lastName']))
     }
     ?>
 
-<table>
+    <table border="1">
     <thead>
     <th>Title</th>
     <th>Description</th>

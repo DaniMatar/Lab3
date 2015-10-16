@@ -1,34 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Add new actors</title>
+    <title>DeleteActor</title>
 </head>
 <body>
 <form id="deleteActor" name="deleteActor" method="post" action="DeleteActor.php">
-    <p><label>Actor Id: <input type="text" name="actorId" id="actorId" /></label></p>
+    <p><label>Actor Id <input type="text" name="actorId" id="actorId" /></label></p>
     <p><input type="submit" id="submit" value="delete" /></p>
 </form>
 
 
 
+
+
+
 <?php
-if(!empty($_POST['actorId']))
-{
-$conn = mysqli_connect("localhost", "root", "inet2005", "sakila");
-if(!$conn)
-{
-    die("Unable to connect to database: " . mysqli_connect_error());
-}
+if(!empty($_POST['actorId'])) {
 
-$sql = "DELETE FROM actor WHERE actor_id = ";
-$sql .= $_POST['actorId'];
-$sql .= ";";
 
-$result = mysqli_query($conn, $sql);
-if(!$result)
-{
-    die("Unable to insert record: " . mysqli_error($conn));
-}
+
+    require_once("Connect.php");
+    $conn = getDbConnection();
+
+    $sql = "DELETE FROM actor WHERE actor_id = ";
+    $sql .= $_POST['actorId'];
+    $sql .= ";";
+
+    $result = mysqli_query($conn, $sql);
+    if(!$result)
+    {
+        die("Unable to insert record: " . mysqli_error($conn));
+    }
+
+    else{
+
+
+    }
+
+
 ?>
 
 <table border = "1">
@@ -40,13 +49,15 @@ if(!$result)
     </thead>
     <?php
 
-    $Display = "SELECT first_name,last_name, actor_id FROM actor ORDER BY actor.actor_id DESC LIMIT 10";
+    $Display = "SELECT first_name,last_name, actor_id FROM actor ORDER BY actor.actor_id ASC LIMIT 10";
     $result2= mysqli_query($conn, $Display);
 
     if(!$result2)
     {
         die("Could not retrieve records from database: " . mysqli_error($conn));
     }
+
+    echo "Affected rows:  ". $result.mysqli_affected_rows($conn);
 
     while($row = mysqli_fetch_assoc($result2)):
         ?>
@@ -60,7 +71,7 @@ if(!$result)
 
     <?php
     endwhile;
-    echo "Affected rows:  ". $result.mysqli_affected_rows($conn);
+
 
 
     mysqli_close($conn);
@@ -71,5 +82,4 @@ if(!$result)
 </table>
 </body>
 </html>
-
 
