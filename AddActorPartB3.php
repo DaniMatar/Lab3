@@ -24,7 +24,7 @@
     </thead>
     <?php
 
-    $Display = "SELECT first_name,last_name, actor_id FROM actor ORDER BY actor.actor_id DESC LIMIT 10";
+    $Display = "SELECT first_name,last_name, actor_id FROM actor ORDER BY actor_id DESC LIMIT 10";
     $result2 = mysqli_query($conn, $Display);
 
     if (!$result2) {

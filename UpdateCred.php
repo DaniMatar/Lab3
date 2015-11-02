@@ -11,54 +11,46 @@
 <?php
 require_once("Connect.php");
 $conn = getDbConnection();
+
+
+$actor_id = $_POST['actorId'];
+
 ?>
 
 
 <?php
-if(!empty($_POST['UpdateActor'])) {
 
 
-    $sql = "SELECT first_name, last_name FROM actor WHERE actor_id = ";
-    $sql .= $_POST['UpdateActor'];
-    $sql .= ";";
-
-    $result = mysqli_query($conn, $sql);
-    if (!$result) {
-        die("Unable to Delete record: " . mysqli_error($conn));
-    } else {
-        echo "Affected rows:  " . $result . mysqli_affected_rows($conn);
-
-    }
+    $sql = "SELECT first_name, last_name FROM actor WHERE actor_id = '$actor_id'";
 
 
+$sql2 = mysqli_query($conn, $sql) ;
 
-}
-
-
+while ($row = mysqli_fetch_assoc($sql2)):
 ?>
 
+<form action="UpdateFinal.php" method="POST"  >
 
+    <label>First Name<input id="FirstName" type="text"  value="<?php echo $row['first_name'] ?>" placeholder="FirstName" name = "FirstName"></label><br>
 
+        <label>Last Name<input id="LastName" type="text" value="<?php echo $row['last_name'] ?>" placeholder="LastName" name = "LastName"></label><br>
 
+    <input type="hidden" name="actorId" id="actorId" value="<?php echo $_POST['actorId']; ?>" />
 
-
-
-
-
-
-
-<form action="UpdateCred.php" method="POST">
-    <input id="searchF" type="text" placeholder="First Name" name = "firstName" value="<?php echo $first_name ?>" >
-    <input id="searchL" type="text" placeholder="Last Name" name = "lastName" value="<?php echo $last_name ?>" >
     <input id="submit" type="submit" value="Update">
 </form>
 
 
+<?php
+endwhile;
 
 
 
 
 
+mysqli_close($conn);
+
+?>
 
 
 

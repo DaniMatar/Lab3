@@ -29,12 +29,13 @@ if(!empty($_POST['firstName']) && !empty($_POST['lastName']))
 
     <table border="1">
     <thead>
+    <th>ID</th>
     <th>Title</th>
     <th>Description</th>
     </thead>
     <?php
 
-    $Display = "SELECT first_name,last_name FROM actor";
+    $Display = "SELECT first_name,last_name,actor_id FROM actor";
     $result2= mysqli_query($conn, $Display);
 
     if(!$result2)
@@ -45,6 +46,7 @@ if(!empty($_POST['firstName']) && !empty($_POST['lastName']))
         while($row = mysqli_fetch_assoc($result2)):
             ?>
             <tr>
+                <td><?php echo $row['actor_id'] ?></td>
                 <td><?php echo $row['first_name'] ?></td>
                 <td><?php echo $row['last_name'] ?></td>
             </tr>
